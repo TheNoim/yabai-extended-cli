@@ -3,11 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		FBD0036A26776CA00050B26F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD0036926776CA00050B26F /* main.swift */; };
+		FBD0037226776D850050B26F /* SwiftShell in Frameworks */ = {isa = PBXBuildFile; productRef = FBD0037126776D850050B26F /* SwiftShell */; };
+		FBD003742677728C0050B26F /* yabai.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD003732677728C0050B26F /* yabai.swift */; };
+		FBD00376267773240050B26F /* yabai-json-structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD00375267773240050B26F /* yabai-json-structs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,8 @@
 /* Begin PBXFileReference section */
 		FBD0036626776CA00050B26F /* YabiExtendedCli */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = YabiExtendedCli; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD0036926776CA00050B26F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		FBD003732677728C0050B26F /* yabai.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yabai.swift; sourceTree = "<group>"; };
+		FBD00375267773240050B26F /* yabai-json-structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "yabai-json-structs.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBD0037226776D850050B26F /* SwiftShell in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +64,8 @@
 			isa = PBXGroup;
 			children = (
 				FBD0036926776CA00050B26F /* main.swift */,
+				FBD003732677728C0050B26F /* yabai.swift */,
+				FBD00375267773240050B26F /* yabai-json-structs.swift */,
 			);
 			path = YabiExtendedCli;
 			sourceTree = "<group>";
@@ -78,6 +86,9 @@
 			dependencies = (
 			);
 			name = YabiExtendedCli;
+			packageProductDependencies = (
+				FBD0037126776D850050B26F /* SwiftShell */,
+			);
 			productName = YabiExtendedCli;
 			productReference = FBD0036626776CA00050B26F /* YabiExtendedCli */;
 			productType = "com.apple.product-type.tool";
@@ -105,6 +116,9 @@
 				Base,
 			);
 			mainGroup = FBD0035D26776CA00050B26F;
+			packageReferences = (
+				FBD0037026776D850050B26F /* XCRemoteSwiftPackageReference "SwiftShell" */,
+			);
 			productRefGroup = FBD0036726776CA00050B26F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -119,6 +133,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBD00376267773240050B26F /* yabai-json-structs.swift in Sources */,
+				FBD003742677728C0050B26F /* yabai.swift in Sources */,
 				FBD0036A26776CA00050B26F /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +301,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FBD0037026776D850050B26F /* XCRemoteSwiftPackageReference "SwiftShell" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kareman/SwiftShell.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FBD0037126776D850050B26F /* SwiftShell */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBD0037026776D850050B26F /* XCRemoteSwiftPackageReference "SwiftShell" */;
+			productName = SwiftShell;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FBD0035E26776CA00050B26F /* Project object */;
 }
