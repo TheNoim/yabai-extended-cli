@@ -19,31 +19,36 @@ do {
     
     let grabbedIndex: Int? = getGrabbedWindow();
     
+    var targetSpaceIndex: Int = 0;
+    
     if input == "first" {
-        focusSpace(index: try! getFirstSpaceIndexForDisplay())
+        targetSpaceIndex = try! getFirstSpaceIndexForDisplay();
     } else if input == "last" {
-        focusSpace(index: try! getLastSpaceIndexForDisplay());
+        targetSpaceIndex = try! getLastSpaceIndexForDisplay();
     } else {
         let currentSpace = try! getCurrentSpaceForDisplay();
         
         if input == "next" {
             let lastSpace = try! getLastSpaceIndexForDisplay();
             if currentSpace == lastSpace {
-                focusSpace(index: try! getFirstSpaceIndexForDisplay())
+                targetSpaceIndex = try! getFirstSpaceIndexForDisplay();
             } else {
-                focusSpace(index: currentSpace + 1)
+                targetSpaceIndex = currentSpace + 1;
             }
         } else if input == "back" {
             let firstSpace = try! getFirstSpaceIndexForDisplay();
             if currentSpace == firstSpace {
-                focusSpace(index: try! getLastSpaceIndexForDisplay());
+                targetSpaceIndex = try! getLastSpaceIndexForDisplay();
             } else {
-                focusSpace(index: currentSpace - 1);
+                targetSpaceIndex = currentSpace - 1;
             }
         }
     }
+    
+    focusSpace(index: targetSpaceIndex)
 
     if grabbedIndex != nil {
+        moveWindowToSpace(windowIndex: grabbedIndex!, spaceIndex: targetSpaceIndex);
         focusWindow(index: grabbedIndex!);
     }
     

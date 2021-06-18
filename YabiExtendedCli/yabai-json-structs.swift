@@ -15,10 +15,12 @@ struct Window: Decodable {
 struct Display: Decodable {
     let id: Int;
     let index: Int;
+    let uuid: String;
 }
 
 struct Space: Decodable {
     let id: Int;
     let index: Int;
     let focused: Int;
+    let visible: Int;
 }

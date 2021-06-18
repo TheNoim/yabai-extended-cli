@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftShell
+import AppKit
 
 func getCurrentDisplay() throws -> Int {
     let result = run("/usr/local/bin/yabai", "-m", "query", "--displays", "--display", "mouse");
@@ -22,8 +23,30 @@ func getCurrentDisplay() throws -> Int {
     return decoded.index;
 }
 
+func getDisplayByUUID(uuid: String) throws -> Display? {
+    let result = run("/usr/local/bin/yabai", "-m", "query", "--displays");
+    if !result.succeeded {
+        throw MyError.runtimeError("Can not find current display. Yabai exited with non zero error code");
+    }
+    guard let jsonData = result.stdout.data(using: .utf8) else {
+        throw MyError.runtimeError("Can not find current display. Can not convert output to data");
+    }
+    guard let decoded = try? JSONDecoder().decode([Display].self, from: jsonData) else {
+        throw MyError.runtimeError("Can not find current display. Can not parse json");
+    }
+    return decoded.first { $0.uuid == uuid };
+}
+
 var cachedDisplayMouseQuery: RunOutput = {
-    run("/usr/local/bin/yabai", "-m", "query", "--spaces", "--display", "mouse")
+    let screen = getScreenWithMouse()
+    if screen != nil {
+        let display = try? getDisplayByUUID(uuid: screen!.identifier);
+        if display != nil {
+            return run("/usr/local/bin/yabai", "-m", "query", "--spaces", "--display", display!.index)
+        }
+    }
+    
+    return run("/usr/local/bin/yabai", "-m", "query", "--spaces", "--display", "mouse")
 }();
 
 func getCurrentSpaceForDisplay() throws -> Int {
@@ -37,7 +60,7 @@ func getCurrentSpaceForDisplay() throws -> Int {
     guard let decoded = try? JSONDecoder().decode([Space].self, from: jsonData) else {
         throw MyError.runtimeError("Can not find current space for display. Can not parse json");
     }
-    return decoded.filter({ $0.focused == 1 }).first!.index;
+    return decoded.filter({ $0.visible == 1 }).first!.index;
 }
 
 func getFirstSpaceIndexForDisplay() throws -> Int {
@@ -72,8 +95,21 @@ func focusSpace(index: Int) {
     run("/usr/local/bin/yabai", "-m", "space", "--focus", index);
 }
 
+func moveWindowToSpace(windowIndex: Int, spaceIndex: Int) {
+    run("/usr/local/bin/yabai", "-m", "window", windowIndex, "--space", spaceIndex);
+}
+
 func focusWindow(index: Int) {
     run("/usr/local/bin/yabai", "-m", "window", "--focus", index);
+}
+
+func getScreenWithMouse() -> NSScreen? {
+    let mouseLocation = NSEvent.mouseLocation
+    let screens = NSScreen.screens
+    
+    let screenWithMouse = (screens.first { NSMouseInRect(mouseLocation, $0.frame, false) })
+    
+    return screenWithMouse;
 }
 
 func getGrabbedWindow() -> Int? {
@@ -91,4 +127,17 @@ func getGrabbedWindow() -> Int? {
     }
     
     return grabbedIndex;
+}
+
+private let NSScreenNumberKey = NSDeviceDescriptionKey("NSScreenNumber")
+
+extension NSScreen {
+    public var identifier: String {
+        guard let number = deviceDescription[NSScreenNumberKey] as? NSNumber else {
+            return ""
+        }
+
+        let uuid = CGDisplayCreateUUIDFromDisplayID(number.uint32Value).takeRetainedValue()
+        return CFUUIDCreateString(nil, uuid) as String
+    }
 }
