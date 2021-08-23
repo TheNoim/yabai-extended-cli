@@ -91,6 +91,20 @@ func getLastSpaceIndexForDisplay() throws -> Int {
     return decoded.last!.index;
 }
 
+func getFocusedWindow() throws -> Window {
+    let result = run("/usr/local/bin/yabai", "-m", "query", "--windows", "--window");
+    if !result.succeeded {
+        throw MyError.runtimeError("Can not find focused window. Yabai exited with non zero error code");
+    }
+    guard let jsonData = result.stdout.data(using: .utf8) else {
+        throw MyError.runtimeError("Can not find focused window. Can not convert output to data");
+    }
+    guard let decoded = try? JSONDecoder().decode(Window.self, from: jsonData) else {
+        throw MyError.runtimeError("Can not find focused window. Can not parse json");
+    }
+    return decoded;
+}
+
 func focusSpace(index: Int) {
     run("/usr/local/bin/yabai", "-m", "space", "--focus", index);
 }

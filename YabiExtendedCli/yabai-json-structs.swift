@@ -10,6 +10,8 @@ import Foundation
 struct Window: Decodable {
     let id: Int;
     let grabbed: Int;
+    let space: Int;
+    let display: Int;
 }
 
 struct Display: Decodable {
