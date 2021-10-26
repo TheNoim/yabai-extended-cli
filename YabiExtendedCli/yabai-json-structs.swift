@@ -9,7 +9,12 @@ import Foundation
 
 struct Window: Decodable {
     let id: Int;
-    let grabbed: Int;
+    let grabbed: Bool;
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case grabbed = "is-grabbed"
+    }
 }
 
 struct Display: Decodable {
@@ -21,6 +26,13 @@ struct Display: Decodable {
 struct Space: Decodable {
     let id: Int;
     let index: Int;
-    let focused: Int;
-    let visible: Int;
+    let focused: Bool;
+    let visible: Bool;
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case index
+        case focused = "has-focus"
+        case visible = "is-visible"
+    }
 }
