@@ -10,10 +10,14 @@ import Foundation
 struct Window: Decodable {
     let id: Int;
     let grabbed: Bool;
+    let space: Int;
+    let display: Int;
     
     enum CodingKeys: String, CodingKey {
         case id
         case grabbed = "is-grabbed"
+        case space
+        case display
     }
 }
 
