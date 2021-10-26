@@ -3,7 +3,7 @@
     "pins": [
       {
         "package": "SwiftShell",
-        "repositoryURL": "https://github.com/kareman/SwiftShell.git",
+        "repositoryURL": "https://github.com/kareman/SwiftShell",
         "state": {
           "branch": null,
           "revision": "99680b2efc7c7dbcace1da0b3979d266f02e213c",

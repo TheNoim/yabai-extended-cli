@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB5617C42728666500DE5690 /* SwiftShell in Frameworks */ = {isa = PBXBuildFile; productRef = FB5617C32728666500DE5690 /* SwiftShell */; };
 		FBD0036A26776CA00050B26F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD0036926776CA00050B26F /* main.swift */; };
-		FBD0037226776D850050B26F /* SwiftShell in Frameworks */ = {isa = PBXBuildFile; productRef = FBD0037126776D850050B26F /* SwiftShell */; };
 		FBD003742677728C0050B26F /* yabai.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD003732677728C0050B26F /* yabai.swift */; };
 		FBD00376267773240050B26F /* yabai-json-structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD00375267773240050B26F /* yabai-json-structs.swift */; };
 /* End PBXBuildFile section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBD0037226776D850050B26F /* SwiftShell in Frameworks */,
+				FB5617C42728666500DE5690 /* SwiftShell in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,7 +87,7 @@
 			);
 			name = YabiExtendedCli;
 			packageProductDependencies = (
-				FBD0037126776D850050B26F /* SwiftShell */,
+				FB5617C32728666500DE5690 /* SwiftShell */,
 			);
 			productName = YabiExtendedCli;
 			productReference = FBD0036626776CA00050B26F /* YabiExtendedCli */;
@@ -100,7 +100,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					FBD0036526776CA00050B26F = {
 						CreatedOnToolsVersion = 12.5;
@@ -117,7 +117,7 @@
 			);
 			mainGroup = FBD0035D26776CA00050B26F;
 			packageReferences = (
-				FBD0037026776D850050B26F /* XCRemoteSwiftPackageReference "SwiftShell" */,
+				FB5617C22728666500DE5690 /* XCRemoteSwiftPackageReference "SwiftShell" */,
 			);
 			productRefGroup = FBD0036726776CA00050B26F /* Products */;
 			projectDirPath = "";
@@ -193,7 +193,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -248,9 +248,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -260,6 +261,7 @@
 		FBD0036E26776CA00050B26F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P88CDRP8CR;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -271,6 +273,7 @@
 		FBD0036F26776CA00050B26F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P88CDRP8CR;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -303,9 +306,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FBD0037026776D850050B26F /* XCRemoteSwiftPackageReference "SwiftShell" */ = {
+		FB5617C22728666500DE5690 /* XCRemoteSwiftPackageReference "SwiftShell" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kareman/SwiftShell.git";
+			repositoryURL = "https://github.com/kareman/SwiftShell";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.1.0;
@@ -314,9 +317,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FBD0037126776D850050B26F /* SwiftShell */ = {
+		FB5617C32728666500DE5690 /* SwiftShell */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FBD0037026776D850050B26F /* XCRemoteSwiftPackageReference "SwiftShell" */;
+			package = FB5617C22728666500DE5690 /* XCRemoteSwiftPackageReference "SwiftShell" */;
 			productName = SwiftShell;
 		};
 /* End XCSwiftPackageProductDependency section */
