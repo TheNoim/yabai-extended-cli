@@ -60,7 +60,7 @@ func getCurrentSpaceForDisplay() throws -> Int {
     guard let decoded = try? JSONDecoder().decode([Space].self, from: jsonData) else {
         throw MyError.runtimeError("Can not find current space for display. Can not parse json");
     }
-    return decoded.filter({ $0.visible }).first!.index;
+    return decoded.filter({ $0.visible || $0.focused }).first!.index;
 }
 
 func getFirstSpaceIndexForDisplay() throws -> Int {

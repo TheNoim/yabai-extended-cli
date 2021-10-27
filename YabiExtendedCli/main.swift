@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftShell
+import AppKit
 
 enum MyError: Error {
     case runtimeError(String)
@@ -22,6 +23,8 @@ do {
     var targetSpaceIndex: Int = 0;
     
     var currentSpace: Int = 0;
+    
+    let event = CGEvent(source: nil)
     
     if input == "first" {
         targetSpaceIndex = try! getFirstSpaceIndexForDisplay();
@@ -62,6 +65,10 @@ do {
         focusWindow(index: grabbedIndex!);
         focusWindow(index: grabbedIndex!);
         focusWindow(index: grabbedIndex!);
+    }
+        
+    if event != nil {
+        CGWarpMouseCursorPosition(event!.location);
     }
     
 } catch {
